@@ -1,6 +1,6 @@
 //VIDEO PRELOAD
 var req = new XMLHttpRequest();
-req.open('GET', 'https://www.starsurge.in/imgs/FlutterFly_Launch_intro.mp4', true);
+req.open('GET', 'https://starsurgestudio.github.io/imgs/FlutterFly_Launch_intro.mp4', true);
 req.responseType = 'blob';
 
 req.onload = function() {

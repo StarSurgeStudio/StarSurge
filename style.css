@@ -44,11 +44,12 @@
 }
 
 /* Main Container - Centered Layout */
-.main-container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 var(--spacing-sm);
+.main-container,
+.container-fullwidth {
     width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
     position: relative;
     z-index: 1;
 }
