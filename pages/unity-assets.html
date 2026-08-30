@@ -3,7 +3,7 @@
 <head>
 <!-- Links and scripts -->
 	<link rel="stylesheet" href="../style.css">
-	<script src="../app.js"></script>
+	<script type="module" src="../app.js"></script>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -45,7 +45,7 @@
 		<!-- Navbar -->
 		<nav class="navbar navbar-expand-md navbar-dark navbar-custom" id="ftco-nav">
 			<!-- Logo -->
-			<a class="navbar-brand"><a href="https://starsurgestudio.github.io"><img src="../imgs/logo_icon.png" class="logo" alt="StarSurge"/></a>
+			<a class="navbar-brand" href="https://starsurgestudio.github.io"><img src="../imgs/logo_icon.png" class="logo" alt="StarSurge"/></a>
 			<span class="navbar-text"><a href="https://starsurgestudio.github.io"><h1>StarSurge</h1></a></span>	
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -84,59 +84,98 @@
 				<div class="container container-custom">
 					<div class="row position-relative justify-content-center row-custom">
 					<div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 order-lg-1 order-1 col-custom-gm" >
-						<div class="content">
-							<h2>Unity Assets</h2><br/>
-							<p>Official StarSurge Unity assets available for download and press use.</p><br/>
+						<div class="content unity-assets-page">
+							<section class="unity-assets-hero">
+								<div class="unity-assets-copy">
+									<span class="asset-label">Unity tools & systems</span>
+									<h2>Production-ready Unity assets, launching soon.</h2>
+									<p>We’re building premium Unity tooling for studios and creators who want faster iteration, cleaner workflows, and more polished gameplay systems.</p>
+									<div class="asset-actions">
+										<a class="btn asset-primary" href="mailto:contact@starsurge.in?subject=Unity%20Asset%20Store%20Notification">Notify me</a>
+										<a class="btn asset-secondary" href="https://starsurgestudio.github.io/">Back to studio</a>
+									</div>
+									<div class="asset-meta-row">
+										<span>Unity 2021 LTS+</span>
+										<span>URP / HDRP ready</span>
+										<span>Asset Store submission in progress</span>
+									</div>
+								</div>
+								<div class="asset-preview-panel">
+									<div class="preview-window">
+										<div class="preview-header">
+											<span class="dot red"></span>
+											<span class="dot amber"></span>
+											<span class="dot green"></span>
+										</div>
+										<div class="preview-body">
+											<span class="preview-badge">Coming Soon</span>
+											<h3>StarSurge Toolkit</h3>
+											<ul>
+												<li>Editor utilities</li>
+												<li>Gameplay helpers</li>
+												<li>Performance-focused systems</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</section>
 
-							<h3>FlutterFly</h3><br/>
-							<div class="row position-relative justify-content-center row-custom">
-								<div class="col-md-4 text-center games-block" style="height:auto; margin-bottom:40px;">
-									<div class="gallery">
-										<img src="https://starsurgestudio.github.io/imgs/flutterfly_cover_cs.jpg" alt="FlutterFly cover art" style="width:100%; height:auto;">
+							<section class="asset-feature-grid">
+								<article class="asset-card">
+									<div class="card-topline">
+										<span class="card-kind">Toolkit</span>
+										<span class="card-state soon">Coming Soon</span>
 									</div>
-									<div class="name" style="padding-top: 10px;">Cover Art</div>
-									<a href="https://starsurgestudio.github.io/imgs/flutterfly_cover_cs.jpg" download class="btn btn-light mainbtn" style="margin-top:10px;">Download</a>
-								</div>
-								<div class="col-md-4 text-center games-block" style="height:auto; margin-bottom:40px;">
-									<div class="gallery">
-										<img src="https://starsurgestudio.github.io/imgs/flutterfly-playstore-screenshot.jpg" alt="FlutterFly screenshot" style="width:100%; height:auto;">
-									</div>
-									<div class="name" style="padding-top: 10px;">Screenshot</div>
-									<a href="https://starsurgestudio.github.io/imgs/flutterfly-playstore-screenshot.jpg" download class="btn btn-light mainbtn" style="margin-top:10px;">Download</a>
-								</div>
-								<div class="col-md-4 text-center games-block" style="height:auto; margin-bottom:40px;">
-									<div class="gallery">
-										<img src="https://starsurgestudio.github.io/imgs/ffly-2.png" alt="FlutterFly logo" style="width:100%; height:auto;">
-									</div>
-									<div class="name" style="padding-top: 10px;">Logo</div>
-									<a href="https://starsurgestudio.github.io/imgs/ffly-2.png" download class="btn btn-light mainbtn" style="margin-top:10px;">Download</a>
-								</div>
-							</div>
+									<h3>StarSurge Core Toolkit</h3>
+									<p>Reusable Unity helpers for editor workflow, polishing, and game-ready utilities built for production teams.</p>
+									<ul>
+										<li>Editor automation</li>
+										<li>Debug and QA tools</li>
+										<li>Reusable scene setup flows</li>
+									</ul>
+								</article>
 
-							<br/><h3>StarSurge Brand</h3><br/>
-							<div class="row position-relative justify-content-center row-custom">
-								<div class="col-md-4 text-center games-block" style="height:auto; margin-bottom:40px;">
-									<div class="gallery">
-										<img src="https://starsurgestudio.github.io/imgs/logo_icon.png" alt="StarSurge logo" style="width:100%; height:auto;">
+								<article class="asset-card highlight-card">
+									<div class="card-topline">
+										<span class="card-kind">Workflow</span>
+										<span class="card-state soon">Coming Soon</span>
 									</div>
-									<div class="name" style="padding-top: 10px;">Studio Logo</div>
-									<a href="https://starsurgestudio.github.io/imgs/logo_icon.png" download class="btn btn-light mainbtn" style="margin-top:10px;">Download</a>
-								</div>
-								<div class="col-md-4 text-center games-block" style="height:auto; margin-bottom:40px;">
-									<div class="gallery">
-										<img src="https://starsurgestudio.github.io/imgs/ff-poster-static0.jpg" alt="FlutterFly poster" style="width:100%; height:auto;">
+									<h3>Gameplay Bootstrap Pack</h3>
+									<p>Clean, modular systems for rapid prototyping and shipping polished, event-driven gameplay loops.</p>
+									<ul>
+										<li>Mono lifecycle helpers</li>
+										<li>Scene bootstrapping</li>
+										<li>Runtime validation/debugging</li>
+									</ul>
+								</article>
+
+								<article class="asset-card">
+									<div class="card-topline">
+										<span class="card-kind">Visual</span>
+										<span class="card-state soon">Coming Soon</span>
 									</div>
-									<div class="name" style="padding-top: 10px;">FlutterFly Poster</div>
-									<a href="https://starsurgestudio.github.io/imgs/ff-poster-static0.jpg" download class="btn btn-light mainbtn" style="margin-top:10px;">Download</a>
+									<h3>VFX & UI Utility Suite</h3>
+									<p>High-impact visual patterns for interfaces, motion feedback, and game feel across menus and gameplay moments.</p>
+									<ul>
+										<li>UI motion presets</li>
+										<li>FX material helpers</li>
+										<li>Prototype-friendly animation support</li>
+									</ul>
+								</article>
+							</section>
+
+							<section class="asset-launch-panel">
+								<div class="launch-copy">
+									<span class="asset-label">What to expect</span>
+									<h3>Built for studios that want cleaner Unity iteration.</h3>
 								</div>
-								<div class="col-md-4 text-center games-block" style="height:auto; margin-bottom:40px;">
-									<div class="gallery">
-										<img src="https://starsurgestudio.github.io/imgs/google-play-badge.png" alt="Google Play badge" style="width:100%; height:auto;">
-									</div>
-									<div class="name" style="padding-top: 10px;">Play Store Badge</div>
-									<a href="https://starsurgestudio.github.io/imgs/google-play-badge.png" download class="btn btn-light mainbtn" style="margin-top:10px;">Download</a>
+								<div class="launch-points">
+									<div><strong>01</strong><span>Fast editor workflows</span></div>
+									<div><strong>02</strong><span>Production-ready patterns</span></div>
+									<div><strong>03</strong><span>Scalable gameplay systems</span></div>
 								</div>
-							</div>
+							</section>
+
 						</div>
 					</div>
 				</div>

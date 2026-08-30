@@ -3,7 +3,7 @@
 <head>
 <!-- Links and scripts -->
 	<link rel="stylesheet" href="../style.css">
-	<script src="../app.js"></script>
+	<script type="module" src="../app.js"></script>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -45,7 +45,7 @@
 		<!-- Navbar -->
 		<nav class="navbar navbar-expand-md navbar-dark navbar-custom" id="ftco-nav">
 			<!-- Logo -->
-			<a class="navbar-brand"><a href="https://starsurgestudio.github.io"><img src="../imgs/logo_icon.png" class="logo" alt="StarSurge"/></a>
+			<a class="navbar-brand" href="https://starsurgestudio.github.io/"><img src="../imgs/logo_icon.png" class="logo" alt="StarSurge"/></a>
 			<span class="navbar-text"><a href="https://starsurgestudio.github.io"><h1>StarSurge</h1></a></span>	
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -80,90 +80,53 @@
 	</header>
 
 	<!-- Titles page -->
-			<div id="mcc" class="pages">
-				<div class="container container-custom">
-					<div class="row position-relative justify-content-center row-custom">
-					<div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 order-lg-1 order-1 col-custom-gm" >
-						<div class="content">
-							<h2>Titles</h2><br/>
-							<div class="container">
-								<div class="row">
-								  <div class="col-md-10 games-block-title">
-									<div class="accordion">
-										<div class="card gbk-titles"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-										  <div class="card-header" id="headingOne">
-											<h2 class="mb-0">
-											<div class="row">
-												<div class="col-md-10 games-block-titles">
-													<button class="btn btn-link btn-cus" type="button" data-toggle="collapse" data-target="#collapseOne"
-													aria-expanded="true" aria-controls="collapseOne2">
-													<img src="https://starsurgestudio.github.io/imgs/ffly-2.png" width="60px">
-													<h3>FlutterFly</h3><img src="https://starsurgestudio.github.io/imgs/play-store-png-logo.png" width="60" alt="Google Play Store" />
-													<div class="cover"><img class="coverimgtitles" src="https://starsurgestudio.github.io/imgs/flutterfly_cover_cs.jpg" height="180px">
-														<i class="fas chev fa-chevron-down"></i>
-													</div>
-												</button>
-												</h2>
-												</div>
-												</div>
-										  </div>
-									  
-										  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-											<div class="card-body cb-cont">
-												<p>FlutterFly is our very first project. It's a light and simple hypercasual game about a butterfly trying to cross a forest of hoops.
-												<br/><br/><b>Genre:</b> Hypercasual, Endless, Calm
-												<br/><b>Release:</b> January 2022
-												<br/><i class="fas fa-link"></i> <b style=" line-height: 200%;">Links:</b> <br/>
-												
-												
-												<style type="text/css">
-													table td{
-																border:none;
-																}
-													.tg  {border-collapse:collapse;border-spacing:0;}
-													.tg td{border:none;font-family:Arial, sans-serif;font-size:9px; text-align:center;
-													  overflow:hidden;padding:10px 5px;word-break:normal;}
-													.tg th{border:none;font-family:Arial, sans-serif;font-size:14px;
-													  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-													.tg .tg-injz{border-color:#000000;font-size:11px;text-align:center;vertical-align:top}
-													.tg .tg-73oq{border-color:#000000;text-align:left;vertical-align:top}
-													</style>
-													<table class="tg">
-													<thead>
-													  <tr>
-														<th class="tg-wp8o"><a href="https://flutterfly.starsurge.in"><i class="fas fab fa-home">
-														</i></a> </th>
-														<th class="tg-wp8o"><a href="https://play.google.com/store/apps/details?id=com.StarSurge.FlutterFly"><i class="fab fa-google-play"></i></a></th>
-														<th class="tg-wp8o"> <a href="https://star-surge.itch.io/flutterfly"><i class="fab fa-itch-io"></i></a></th>
-													  </tr>
-													</thead>
-													<tbody>
-													  <tr>
-														<td class="tg-2gr3">Homepage</td>
-														<td class="tg-2gr3">Google Play</td>
-														<td class="tg-2gr3">Itch.io</td>
-													  </tr>
-													</tbody>
-													</table>
+				<div id="mcc" class="pages">
+					<div class="container container-custom">
+						<div class="row position-relative justify-content-center row-custom">
+						<div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 order-lg-1 order-1 col-custom-gm">
+							<div class="content titles-page">
+								<div class="titles-header">
+									<span class="section-kicker">Our games</span>
+								</div>
+
+								<article class="title-showcase">
+									<div class="title-copy">
+										<div class="title-branding">
+											<img src="https://starsurgestudio.github.io/imgs/ffly.jpg" alt="FlutterFly logo" class="title-logo">
+											<div class="title-meta-block">
+													<span class="tag-pill">Hypercasual</span>
+													<h3>FlutterFly</h3>
 											</div>
 										</div>
-								
-							  </div>
+										<p>FlutterFly is our very first project. It is a light and simple hypercasual game about a butterfly trying to cross a forest of hoops.</p>
 
-							<div class="row position-relative justify-content-center row-custom">
-								<div class="col-md-6 center-block text-center ">
-									
-										
+										<div class="detail-grid">
+											<div>
+													<span>Genre</span>
+													<strong>Hypercasual, Endless, Calm</strong>
+											</div>
+											<div>
+													<span>Release</span>
+													<strong>January 2022</strong>
+											</div>
 										</div>
-										
 
-								</div>
+										<div class="game-links" aria-label="FlutterFly links">
+											<a href="https://play.google.com/store/apps/details?id=com.StarSurge.FlutterFly" target="_blank" rel="noreferrer"><i class="fab fa-google-play"></i><span>Google Play</span></a>
+											<a href="https://star-surge.itch.io/flutterfly" target="_blank" rel="noreferrer"><i class="fab fa-itch-io"></i><span>Itch.io</span></a>
+										</div>
+									</div>
+
+									<div class="title-visual">
+										<div class="cover-frame">
+											<img class="coverimgtitles" src="../imgs/ff-square-poster.jpg" alt="FlutterFly cover art">
+										</div>
+									</div>
+								</article>
 							</div>
 						</div>
 					</div>
-					</div>
-				</div>
-			</div>
+				</div>			</div>
 
 	<!-- Footer -->
 	<footer class="text-center text-lg-start footer-custom">

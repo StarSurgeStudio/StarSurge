@@ -3,7 +3,7 @@
 <head>
 <!-- Links and scripts -->
 	<link rel="stylesheet" href="../style.css">
-	<script src="../app.js"></script>
+	<script type="module" src="../app.js"></script>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -45,7 +45,7 @@
 		<!-- Navbar -->
 		<nav class="navbar navbar-expand-md navbar-dark navbar-custom" id="ftco-nav">
 			<!-- Logo -->
-			<a class="navbar-brand"><a href="https://starsurgestudio.github.io"><img src="../imgs/logo_icon.png" class="logo" alt="StarSurge"/></a>
+			<a class="navbar-brand" href="https://starsurgestudio.github.io/"><img src="../imgs/logo_icon.png" class="logo" alt="StarSurge"/></a>
 			<span class="navbar-text"><a href="https://starsurgestudio.github.io"><h1>StarSurge</h1></a></span>	
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -84,90 +84,85 @@
 				<div class="container container-custom">
 					<div class="row position-relative justify-content-center row-custom">
 					<div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 order-lg-1 order-1 col-custom-gm" >
-						<div class="content">
-							<h2>Meet the team</h2><br/>
-							<div class="row position-relative justify-content-center tbk">
-					
-					</div>
-					
-					<!-- row 1 -->
-					<div class="row position-relative justify-content-center tbk">
-
-						<div class="col-sm-4 center-block text-center">
-							<img class="rounded-circle-alt" alt="Professor Panda, Game artist" width="200px" src="../imgs/panda.png"
-											data-holder-rendered="true" style="margin-top:50px;"><br/>
-											<div class="name" style="padding-top: 10px; padding-bottom: 50px;">Professor Panda
-												<br/><span class="desg">Game artist</span>
-											</div>
-						</div>
-						<div class="col-sm-4 center-block text-center">
-							<img class="rounded-circle-alt" alt="Scarlet, Game artist" width="200px"src="../imgs/bluerabbit.png"
-											data-holder-rendered="true" style="margin-top:50px"><br/>
-											<div class="name" style="padding-top: 10px; padding-bottom: 50px;">Scarlet
-												<br/><span class="desg">Game artist</span>
-											</div>
-						</div>
-						<div class="col-sm-4 center-block text-center">
-							<img class="rounded-circle-alt" alt="Sonic, Game artist" width="200px"src="../imgs/koala.png"
-											data-holder-rendered="true" style="margin-top:50px;"><br/>
-											<div class="name" style="padding-top: 10px; padding-bottom: 50px;">Sonic
-												<br/><span class="desg">Game artist</span>
-											</div>
-						</div>
-			
+						<div class="content team-page">
+							<div class="team-header">
+								<span class="section-kicker">Our studio</span>
+								<h2>Meet the team</h2>
 							</div>
 
-						<!-- row 2 -->
-							<div class="row position-relative justify-content-center tbk">
-
-								<div class="col-sm-4 center-block text-center">
-									<img class="rounded-circle-alt" alt="BlackGhost, Game artist" width="200px"src="../imgs/racoon.png"
-													data-holder-rendered="true" style="margin-top:50px"><br/>
-													<div class="name" style="padding-top: 10px; padding-bottom: 50px;">BlackGhost
-														<br/><span class="desg">Game artist</span></div>
-														
-								</div>
-								<div class="col-sm-4 center-block text-center">
-									<img class="rounded-circle-alt" alt="Syn, Game designer" width="200px" src="../imgs/fox.png"
-													data-holder-rendered="true" style="margin-top:50px;"><br/>
-													<div class="name" style="padding-top: 10px;">Syn
-														<br/><span class="desg">Game designer</span>
-													</div>
-								</div>
-								<div class="col-sm-4 center-block text-center">
-									<img class="rounded-circle-alt" alt="Leo, Game developer" width="200px"src="../imgs/dolphin.png"
-													data-holder-rendered="true" style="margin-top:50px"><br/>
-													<div class="name" style="padding-top: 10px; padding-bottom: 50px;">Leo
-														<br/><span class="desg">Game developer</span></div>
-								</div>
-							</div>	
-
-						<!-- row 3 -->
-							<div class="row position-relative justify-content-center tbk">
-
-								<div class="col-sm-4 center-block text-center">
-									<img class="rounded-circle-alt" alt="Razor, Project manager/Game developer" width="200px" src="../imgs/tigercat.png"
-													data-holder-rendered="true" style="margin-top:50px;"><br/>
-													<div class="name" style="padding-top: 10px;">Razor
-														<br/><span class="desg">Project manager/Game developer</span>
-													</div>
-														
-								</div>
-								<div class="col-sm-4 center-block text-center">
-									<img class="rounded-circle-alt" alt="Buzz Soul, Game designer/QA" width="200px"src="../imgs/unicorn.png"
-													data-holder-rendered="true" style="margin-top:50px;"><br/>
-													<div class="name" style="padding-top: 10px; padding-bottom: 50px;">Buzz Soul
-														<br/><span class="desg">Game designer/QA</span></div>
-								</div>
-								<div class="col-sm-4 center-block text-center">
-									<img class="rounded-circle-alt" alt="Maverick, QA/Finance" width="200px"src="../imgs/bear.png"
-													data-holder-rendered="true" style="margin-top:50px;"><br/>
-													<div class="name" style="padding-top: 10px; padding-bottom: 50px;">Maverick
-														<br/><span class="desg">QA/Finance</span></div>
-								</div>
-							</div>
-					
+							<div class="team-grid">
+								<div class="team-card">
+									<div class="avatar-wrap">
+										<img class="rounded-circle-alt" alt="Professor Panda, Game artist" src="../imgs/panda.png" data-holder-rendered="true">
 									</div>
+									<div class="name">Professor Panda</div>
+									<span class="desg">Game artist</span>
+								</div>
+
+								<div class="team-card">
+									<div class="avatar-wrap">
+										<img class="rounded-circle-alt" alt="Scarlet, Game artist" src="../imgs/bluerabbit.png" data-holder-rendered="true">
+									</div>
+									<div class="name">Scarlet</div>
+									<span class="desg">Game artist</span>
+								</div>
+
+								<div class="team-card">
+									<div class="avatar-wrap">
+										<img class="rounded-circle-alt" alt="Sonic, Game artist" src="../imgs/koala.png" data-holder-rendered="true">
+									</div>
+									<div class="name">Sonic</div>
+									<span class="desg">Game artist</span>
+								</div>
+
+								<div class="team-card">
+									<div class="avatar-wrap">
+										<img class="rounded-circle-alt" alt="BlackGhost, Game artist" src="../imgs/racoon.png" data-holder-rendered="true">
+									</div>
+									<div class="name">BlackGhost</div>
+									<span class="desg">Game artist</span>
+								</div>
+
+								<div class="team-card">
+									<div class="avatar-wrap">
+										<img class="rounded-circle-alt" alt="Syn, Game designer" src="../imgs/fox.png" data-holder-rendered="true">
+									</div>
+									<div class="name">Syn</div>
+									<span class="desg">Game designer</span>
+								</div>
+
+								<div class="team-card">
+									<div class="avatar-wrap">
+										<img class="rounded-circle-alt" alt="Leo, Game developer" src="../imgs/dolphin.png" data-holder-rendered="true">
+									</div>
+									<div class="name">Leo</div>
+									<span class="desg">Game developer</span>
+								</div>
+
+								<div class="team-card">
+									<div class="avatar-wrap">
+										<img class="rounded-circle-alt" alt="Razor, CEO" src="../imgs/tigercat.png" data-holder-rendered="true">
+									</div>
+									<div class="name">Razor</div>
+									<span class="desg">CEO</span>
+								</div>
+
+								<div class="team-card">
+									<div class="avatar-wrap">
+										<img class="rounded-circle-alt" alt="Buzz Soul, Game designer/QA" src="../imgs/unicorn.png" data-holder-rendered="true">
+									</div>
+									<div class="name">Buzz Soul</div>
+									<span class="desg">Game designer/QA</span>
+								</div>
+
+								<div class="team-card">
+									<div class="avatar-wrap">
+										<img class="rounded-circle-alt" alt="Maverick, QA/Finance" src="../imgs/bear.png" data-holder-rendered="true">
+									</div>
+									<div class="name">Maverick</div>
+									<span class="desg">QA/Finance</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
