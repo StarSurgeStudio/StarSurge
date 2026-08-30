@@ -49,3 +49,172 @@
         return "";
     }
 })();
+
+(function () {
+    "use strict";
+
+    var canvas = document.getElementById('galaxy-canvas');
+    if (!canvas) {
+        return;
+    }
+
+    class Star {
+        constructor(canvas) {
+            this.canvas = canvas;
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 0.5;
+            this.speedX = (Math.random() - 0.5) * 0.3;
+            this.speedY = (Math.random() - 0.5) * 0.3;
+            this.opacity = Math.random() * 0.8 + 0.2;
+            this.twinkleSpeed = Math.random() * 0.02 + 0.01;
+            this.twinkleDirection = Math.random() > 0.5 ? 1 : -1;
+            this.color = this.getStarColor();
+        }
+
+        getStarColor() {
+            const colors = [
+                'rgba(255, 255, 255, 1)',
+                'rgba(200, 180, 255, 1)',
+                'rgba(180, 160, 255, 1)',
+                'rgba(255, 200, 255, 1)',
+                'rgba(150, 180, 255, 1)',
+                'rgba(255, 220, 150, 1)'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            this.opacity += this.twinkleSpeed * this.twinkleDirection;
+            if (this.opacity >= 1 || this.opacity <= 0.2) {
+                this.twinkleDirection *= -1;
+            }
+
+            if (this.x < 0) this.x = this.canvas.width;
+            if (this.x > this.canvas.width) this.x = 0;
+            if (this.y < 0) this.y = this.canvas.height;
+            if (this.y > this.canvas.height) this.y = 0;
+        }
+
+        draw(ctx) {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color.replace('1)', `${this.opacity})`);
+            ctx.fill();
+
+            if (this.size > 1.5) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, 0,
+                    this.x, this.y, this.size * 2
+                );
+                gradient.addColorStop(0, this.color.replace('1)', `${this.opacity * 0.3})`));
+                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                ctx.fillStyle = gradient;
+                ctx.fill();
+            }
+        }
+    }
+
+    class Galaxy {
+        constructor() {
+            this.canvas = document.getElementById('galaxy-canvas');
+            this.ctx = this.canvas.getContext('2d');
+            this.stars = [];
+            this.mouseX = window.innerWidth / 2;
+            this.mouseY = window.innerHeight / 2;
+            this.resize();
+            this.init();
+            this.animate();
+
+            window.addEventListener('resize', () => this.resize());
+            window.addEventListener('mousemove', (e) => {
+                this.mouseX = e.clientX;
+                this.mouseY = e.clientY;
+            });
+        }
+
+        resize() {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+        }
+
+        init() {
+            const starCount = Math.min(200, Math.floor((this.canvas.width * this.canvas.height) / 8000));
+            this.stars = [];
+            for (let i = 0; i < starCount; i++) {
+                this.stars.push(new Star(this.canvas));
+            }
+        }
+
+        drawNebula() {
+            const gradient1 = this.ctx.createRadialGradient(
+                this.canvas.width * 0.3, this.canvas.height * 0.4, 0,
+                this.canvas.width * 0.3, this.canvas.height * 0.4, this.canvas.width * 0.5
+            );
+            gradient1.addColorStop(0, 'rgba(100, 50, 150, 0.06)');
+            gradient1.addColorStop(0.5, 'rgba(60, 30, 100, 0.03)');
+            gradient1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+            const gradient2 = this.ctx.createRadialGradient(
+                this.canvas.width * 0.7, this.canvas.height * 0.6, 0,
+                this.canvas.width * 0.7, this.canvas.height * 0.6, this.canvas.width * 0.4
+            );
+            gradient2.addColorStop(0, 'rgba(80, 40, 120, 0.05)');
+            gradient2.addColorStop(0.5, 'rgba(40, 20, 80, 0.03)');
+            gradient2.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+            this.ctx.fillStyle = gradient1;
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+            this.ctx.fillStyle = gradient2;
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        }
+
+        animate() {
+            this.ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            this.drawNebula();
+
+            this.stars.forEach(star => {
+                star.update();
+                star.draw(this.ctx);
+            });
+
+            this.stars.forEach(star => {
+                const dx = this.mouseX - star.x;
+                const dy = this.mouseY - star.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < 150) {
+                    const force = (150 - distance) / 150 * 0.02;
+                    star.x += dx * force * 0.1;
+                    star.y += dy * force * 0.1;
+                }
+            });
+
+            requestAnimationFrame(() => this.animate());
+        }
+    }
+
+    function initGalaxy() {
+        if (!document.getElementById('galaxy-canvas')) {
+            return;
+        }
+
+        if (window.__starSurgeGalaxy) {
+            return;
+        }
+
+        window.__starSurgeGalaxy = new Galaxy();
+    }
+
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        initGalaxy();
+    } else {
+        window.addEventListener('load', initGalaxy, { once: true });
+    }
+})();

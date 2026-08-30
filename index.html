@@ -313,165 +313,107 @@
         })
     </script>
 
-    <!-- Interactive Galaxy Background Script -->
-    <script>
-        class Star {
-            constructor(canvas) {
-                this.canvas = canvas;
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.3;
-                this.speedY = (Math.random() - 0.5) * 0.3;
-                this.opacity = Math.random() * 0.8 + 0.2;
-                this.twinkleSpeed = Math.random() * 0.02 + 0.01;
-                this.twinkleDirection = Math.random() > 0.5 ? 1 : -1;
-                this.color = this.getStarColor();
-            }
+<script class="galaxy-init-script">
+(function(){
+  const canvas = document.getElementById('galaxy-canvas');
+  if (!canvas || canvas.dataset.initialized === 'true') return;
+  canvas.dataset.initialized = 'true';
+  const ctx = canvas.getContext('2d');
+  const stars = [];
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
 
-            getStarColor() {
-                const colors = [
-                    'rgba(255, 255, 255, 1)',      // White
-                    'rgba(200, 180, 255, 1)',      // Light purple
-                    'rgba(180, 160, 255, 1)',      // Purple
-                    'rgba(255, 200, 255, 1)',      // Pink
-                    'rgba(150, 180, 255, 1)',      // Blue
-                    'rgba(255, 220, 150, 1)'       // Warm
-                ];
-                return colors[Math.floor(Math.random() * colors.length)];
-            }
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
 
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
+  function makeStar() {
+    return {
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 2 + 0.5,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      alpha: Math.random() * 0.75 + 0.2,
+      twinkle: Math.random() * 0.035 + 0.01,
+      dir: Math.random() > 0.5 ? 1 : -1,
+      color: ['#ffffff', '#d8d1ff', '#c6d7ff', '#f7d2ff', '#d9f1ff'][Math.floor(Math.random() * 5)]
+    };
+  }
 
-                // Twinkle effect
-                this.opacity += this.twinkleSpeed * this.twinkleDirection;
-                if (this.opacity >= 1 || this.opacity <= 0.2) {
-                    this.twinkleDirection *= -1;
-                }
+  function drawNebula() {
+    const g1 = ctx.createRadialGradient(canvas.width * 0.3, canvas.height * 0.4, 0, canvas.width * 0.3, canvas.height * 0.4, canvas.width * 0.55);
+    g1.addColorStop(0, 'rgba(130, 88, 255, 0.08)');
+    g1.addColorStop(0.5, 'rgba(80, 45, 140, 0.03)');
+    g1.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
-                // Wrap around screen
-                if (this.x < 0) this.x = this.canvas.width;
-                if (this.x > this.canvas.width) this.x = 0;
-                if (this.y < 0) this.y = this.canvas.height;
-                if (this.y > this.canvas.height) this.y = 0;
-            }
+    const g2 = ctx.createRadialGradient(canvas.width * 0.72, canvas.height * 0.62, 0, canvas.width * 0.72, canvas.height * 0.62, canvas.width * 0.45);
+    g2.addColorStop(0, 'rgba(140, 110, 255, 0.06)');
+    g2.addColorStop(0.5, 'rgba(70, 30, 110, 0.025)');
+    g2.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
-            draw(ctx) {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color.replace('1)', `${this.opacity})`);
-                ctx.fill();
+    ctx.fillStyle = g1;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = g2;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
 
-                // Glow effect for larger stars
-                if (this.size > 1.5) {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
-                    const gradient = ctx.createRadialGradient(
-                        this.x, this.y, 0,
-                        this.x, this.y, this.size * 2
-                    );
-                    gradient.addColorStop(0, this.color.replace('1)', `${this.opacity * 0.3})`));
-                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-                    ctx.fillStyle = gradient;
-                    ctx.fill();
-                }
-            }
-        }
+  function animate() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawNebula();
 
-        class Galaxy {
-            constructor() {
-                this.canvas = document.getElementById('galaxy-canvas');
-                this.ctx = this.canvas.getContext('2d');
-                this.stars = [];
-                this.mouseX = 0;
-                this.mouseY = 0;
-                this.resize();
-                this.init();
-                this.animate();
+    for (let i = 0; i < stars.length; i++) {
+      const star = stars[i];
+      star.x += star.vx;
+      star.y += star.vy;
+      star.alpha += star.twinkle * star.dir;
+      if (star.alpha >= 1 || star.alpha <= 0.2) star.dir *= -1;
+      if (star.x < 0) star.x = canvas.width;
+      if (star.x > canvas.width) star.x = 0;
+      if (star.y < 0) star.y = canvas.height;
+      if (star.y > canvas.height) star.y = 0;
 
-                window.addEventListener('resize', () => this.resize());
-                window.addEventListener('mousemove', (e) => {
-                    this.mouseX = e.clientX;
-                    this.mouseY = e.clientY;
-                });
-            }
+      const dx = mouseX - star.x;
+      const dy = mouseY - star.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance < 150) {
+        const force = (150 - distance) / 150 * 0.04;
+        star.x += dx * force * 0.2;
+        star.y += dy * force * 0.2;
+      }
 
-            resize() {
-                this.canvas.width = window.innerWidth;
-                this.canvas.height = window.innerHeight;
-            }
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+      ctx.fillStyle = star.color;
+      ctx.globalAlpha = star.alpha;
+      ctx.fill();
+      ctx.globalAlpha = 1;
 
-            init() {
-                const starCount = Math.min(200, Math.floor((this.canvas.width * this.canvas.height) / 8000));
-                this.stars = [];
-                for (let i = 0; i < starCount; i++) {
-                    this.stars.push(new Star(this.canvas));
-                }
-            }
+      if (star.r > 1.3) {
+        const glow = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.r * 3);
+        glow.addColorStop(0, star.color + '66');
+        glow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = glow;
+        ctx.globalAlpha = star.alpha * 0.4;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+    }
 
-            drawNebula() {
-                // Create subtle nebula clouds
-                const gradient1 = this.ctx.createRadialGradient(
-                    this.canvas.width * 0.3, this.canvas.height * 0.4, 0,
-                    this.canvas.width * 0.3, this.canvas.height * 0.4, this.canvas.width * 0.5
-                );
-                gradient1.addColorStop(0, 'rgba(100, 50, 150, 0.05)');
-                gradient1.addColorStop(0.5, 'rgba(60, 30, 100, 0.02)');
-                gradient1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    requestAnimationFrame(animate);
+  }
 
-                const gradient2 = this.ctx.createRadialGradient(
-                    this.canvas.width * 0.7, this.canvas.height * 0.6, 0,
-                    this.canvas.width * 0.7, this.canvas.height * 0.6, this.canvas.width * 0.4
-                );
-                gradient2.addColorStop(0, 'rgba(80, 40, 120, 0.04)');
-                gradient2.addColorStop(0.5, 'rgba(40, 20, 80, 0.02)');
-                gradient2.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
-                this.ctx.fillStyle = gradient1;
-                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
-                this.ctx.fillStyle = gradient2;
-                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-            }
-
-            animate() {
-                // Clear with dark background
-                this.ctx.fillStyle = 'rgba(13, 3, 46, 1)';
-                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
-                // Draw nebula effect
-                this.drawNebula();
-
-                // Update and draw stars
-                this.stars.forEach(star => {
-                    star.update();
-                    star.draw(this.ctx);
-                });
-
-                // Mouse interaction - subtle pull effect
-                this.stars.forEach(star => {
-                    const dx = this.mouseX - star.x;
-                    const dy = this.mouseY - star.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 150) {
-                        const force = (150 - distance) / 150 * 0.02;
-                        star.x += dx * force * 0.1;
-                        star.y += dy * force * 0.1;
-                    }
-                });
-
-                requestAnimationFrame(() => this.animate());
-            }
-        }
-
-        // Initialize galaxy when DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            if (document.getElementById('galaxy-canvas')) {
-                new Galaxy();
-            }
-        });
-    </script>
-</body>
+  resize();
+  const count = Math.min(220, Math.floor((canvas.width * canvas.height) / 8500));
+  for (let i = 0; i < count; i++) stars.push(makeStar());
+  window.addEventListener('resize', resize);
+  window.addEventListener('pointermove', (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+  });
+  requestAnimationFrame(animate);
+})();
+</script></body>
 </html>
