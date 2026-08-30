@@ -37,7 +37,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 0;
     display: block;
     pointer-events: none;
     background: linear-gradient(135deg, #000000 0%, #090909 50%, #000000 100%);

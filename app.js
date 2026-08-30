@@ -132,10 +132,14 @@
             this.animate();
 
             window.addEventListener('resize', () => this.resize());
-            window.addEventListener('mousemove', (e) => {
+            window.addEventListener('pointermove', (e) => {
                 this.mouseX = e.clientX;
                 this.mouseY = e.clientY;
-            });
+            }, { passive: true });
+            document.addEventListener('pointermove', (e) => {
+                this.mouseX = e.clientX;
+                this.mouseY = e.clientY;
+            }, { passive: true });
         }
 
         resize() {
@@ -144,7 +148,7 @@
         }
 
         init() {
-            const starCount = Math.min(200, Math.floor((this.canvas.width * this.canvas.height) / 8000));
+            const starCount = Math.min(150, Math.floor((this.canvas.width * this.canvas.height) / 10000));
             this.stars = [];
             for (let i = 0; i < starCount; i++) {
                 this.stars.push(new Star(this.canvas));
@@ -189,10 +193,12 @@
                 const dx = this.mouseX - star.x;
                 const dy = this.mouseY - star.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < 150) {
-                    const force = (150 - distance) / 150 * 0.02;
-                    star.x += dx * force * 0.1;
-                    star.y += dy * force * 0.1;
+                const influenceRadius = 180;
+                if (distance < influenceRadius) {
+                    const force = (influenceRadius - distance) / influenceRadius;
+                    const drift = 0.08;
+                    star.x += (dx / (distance || 1)) * force * drift * 18;
+                    star.y += (dy / (distance || 1)) * force * drift * 18;
                 }
             });
 
