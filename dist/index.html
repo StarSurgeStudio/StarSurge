@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -275,31 +275,37 @@
             document.cookie = name+'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
 
+        function showToast(action) {
+            if ($.fn && typeof $.fn.toast === 'function') {
+                $('.toast').toast(action);
+            }
+        }
+
         function cookieConsent() {
             if (!getCookie('allowCookies')) {
-                $('.toast').toast('show')
+                showToast('show');
             }
         }
 
         $('#btnDeny').click(()=>{
-            eraseCookie('allowCookies')
-            $('.toast').toast('hide')
-        })
+            eraseCookie('allowCookies');
+            showToast('hide');
+        });
 
         $('#btnAccept').click(()=>{
-            setCookie('allowCookies','1',7)
-            $('.toast').toast('hide')
-        })
+            setCookie('allowCookies','1',7);
+            showToast('hide');
+        });
 
         // load
-        cookieConsent()
+        cookieConsent();
 
         // for demo / testing only
         $('#btnReset').click(()=>{
             // clear cookie to show toast after acceptance
-            eraseCookie('allowCookies')
-            $('.toast').toast('show')
-        })
+            eraseCookie('allowCookies');
+            showToast('show');
+        });
 
     </script>
 
